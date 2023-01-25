@@ -8,8 +8,10 @@ const router = require('./router');
 const errorHandler = require('./middlewares/errorHandler');
 const { Admin } = require('./config/conf');
 const { generateHash } = require('./utils/bcrypt');
-const net = require('net');
-const socketFile = '/run/apiarif.sock';
+
+// const net = require('net');
+// const socketFile = '/run/apiarif.sock';
+
 // middlewares
 app.use(cors());
 app.use(express.json());
@@ -40,8 +42,10 @@ sequelize
     .catch((err) => console.log(err));
 
 const port = process.env.PORT || 4044;
-const server = net.createServer(app);
+// const server = net.createServer(app);
 
-server.listen(socketFile, () =>
-   {console.log('Listening on socket file: ${socketFile}');
-});
+// server.listen(socketFile, () =>
+//    {console.log('Listening on socket file: ${socketFile}');
+// });
+
+app.listen(port, () => console.log('Listening on port ' + port));
