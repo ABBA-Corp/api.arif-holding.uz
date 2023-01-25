@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('postgres://postgres:root@localhost:5432/arif');
+const sequelize = new Sequelize('postgres://backend:719364825g@localhost:5432/arifholding');
 
 const Companies = sequelize.define('companies', {
     id: {
