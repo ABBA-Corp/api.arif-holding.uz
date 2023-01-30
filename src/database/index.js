@@ -1,12 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { ConnectionString } = require('../config/conf');
-
-<<<<<<< HEAD
-const sequelize = new Sequelize(ConnectionString);
-=======
 // const sequelize = new Sequelize('postgres://backend:719364825g@localhost:5432/arifholding');
-const sequelize = new Sequelize('postgres://backend:719364825g@localhost:5432/arifholding');
->>>>>>> 1f6aafab341ad50c100ecb87b39735f66f482a39
+const sequelize = new Sequelize(
+    'postgres://backend:719364825g@localhost:5432/arifholding'
+);
 
 const Companies = sequelize.define('companies', {
     id: {
