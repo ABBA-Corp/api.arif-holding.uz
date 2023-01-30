@@ -1,4 +1,4 @@
-const { ProductTypes } = require('../../database');
+const { ProductTypes, Companies } = require('../../database');
 const deleteFile = require('../../utils/deleteFile');
 const { default: ErrorResponse } = require('../../utils/errorResponse');
 const uploadFile = require('../../utils/uploadFile');
@@ -27,7 +27,10 @@ module.exports = {
     getById: async (req, res, next) => {
         try {
             const { id } = req.params;
-            const data = await ProductTypes.findOne({ where: { id: id } });
+            const data = await ProductTypes.findOne({
+                where: { id: id },
+                include: Companies,
+            });
 
             res.status(200).json({
                 success: true,
@@ -40,7 +43,7 @@ module.exports = {
 
     getAll: async (req, res, next) => {
         try {
-            const data = await ProductTypes.findAll();
+            const data = await ProductTypes.findAll({ include: Companies });
             res.status(200).json({
                 success: true,
                 data,

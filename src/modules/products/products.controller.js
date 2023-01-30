@@ -29,7 +29,6 @@ module.exports = {
             const { id } = req.params;
             const data = await Products.findOne({
                 where: { id: id },
-                include: ProductTypes,
             });
 
             res.status(200).json({
@@ -43,9 +42,7 @@ module.exports = {
 
     getAll: async (req, res, next) => {
         try {
-            const data = await Products.findAll({
-                include: [ProductTypes, Companies],
-            });
+            const data = await Products.findAll();
             res.status(200).json({
                 success: true,
                 data,

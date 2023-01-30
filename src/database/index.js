@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const { ConnectionString } = require('../config/conf');
 
-const sequelize = new Sequelize('postgres://postgres:root@localhost:5432/arif');
+const sequelize = new Sequelize(ConnectionString);
 
 const Companies = sequelize.define('companies', {
     id: {
@@ -12,7 +13,7 @@ const Companies = sequelize.define('companies', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    title: {
+    title_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -24,7 +25,7 @@ const Companies = sequelize.define('companies', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    description_uz: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -44,7 +45,7 @@ const Products = sequelize.define('products', {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
     },
-    name: {
+    name_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -60,7 +61,7 @@ const Products = sequelize.define('products', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    description_uz: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -84,7 +85,7 @@ const ProductTypes = sequelize.define('product_types', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    title: {
+    title_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -96,7 +97,7 @@ const ProductTypes = sequelize.define('product_types', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    description_uz: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -120,7 +121,7 @@ const Workers = sequelize.define('workers', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    position: {
+    position_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -132,7 +133,7 @@ const Workers = sequelize.define('workers', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    description_uz: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -168,7 +169,7 @@ const News = sequelize.define('news', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    title: {
+    title_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -180,7 +181,7 @@ const News = sequelize.define('news', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    text: {
+    text_uz: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -192,7 +193,7 @@ const News = sequelize.define('news', {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    news_type: {
+    news_type_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -228,7 +229,7 @@ const Services = sequelize.define('services', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    title: {
+    title_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -240,7 +241,7 @@ const Services = sequelize.define('services', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    description_uz: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -260,7 +261,7 @@ const Numbers = sequelize.define('numbers', {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
     },
-    title: {
+    title_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -289,7 +290,7 @@ const About = sequelize.define('about', {
         allowNull: false,
     },
 
-    title: {
+    title_uz: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -301,7 +302,7 @@ const About = sequelize.define('about', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    description_uz: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
@@ -365,8 +366,8 @@ Products.belongsTo(Companies);
 Companies.hasMany(Services, { onDelete: 'cascade' });
 Services.belongsTo(Companies);
 
-Products.belongsToMany(ProductTypes, { through: 'types' });
-ProductTypes.belongsToMany(Products, { through: 'types' });
+Companies.hasMany(ProductTypes, { onDelete: 'cascade' });
+ProductTypes.belongsTo(Companies);
 
 Workers.hasMany(News, { onDelete: 'cascade' });
 News.belongsTo(Workers);

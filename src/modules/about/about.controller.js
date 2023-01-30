@@ -7,11 +7,14 @@ module.exports = {
     create: async (req, res, next) => {
         try {
             const aboutData = req.body;
+            console.log(req['files']);
+            const photos = uploadFile(req['files']['images'], 'images');
             const aboutImage = uploadFile(req['files']['image'], 'images');
 
             const data = await About.create({
                 ...aboutData,
                 img_src: aboutImage[0].src,
+                images: photos,
             });
 
             res.status(201).json({
@@ -74,16 +77,26 @@ module.exports = {
                 where: { id: id },
             });
             aboutData.img_src = dataValues.img_src;
+            aboutData.images = dataValues.images;
 
             if (!dataValues) {
-                throw new ErrorResponse(400, 'Company was not found!');
+                throw new ErrorResponse(400, 'About was not found!');
             }
 
-            if (req['files']) {
+            if (req['files']?.image) {
                 const aboutImage = uploadFile(req['files']['image'], 'images');
                 aboutData.img_src = aboutImage[0].src;
 
                 deleteFile('images', dataValues.img_src);
+            }
+
+            if (req['files']?.images) {
+                const photos = uploadFile(req['files']['images'], 'images');
+                aboutData.images = photos;
+
+                photos.forEach((photo) => {
+                    deleteFile('images', photo);
+                });
             }
 
             await About.update(aboutData, {

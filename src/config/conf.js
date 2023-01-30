@@ -6,7 +6,7 @@ const pg = {
     port: env.PG_PORT || 5432,
     user: env.PG_USER || 'postgres',
     password: env.PG_PASSWORD || 'root',
-    database: env.PG_DB_NAME || 'inout',
+    database: env.PG_DB_NAME || 'arif',
     maxPool: 75,
     minPool: 2,
 };
@@ -29,8 +29,12 @@ const Admin = {
     password: env.PASSWORD || '949354411',
 };
 
+const ConnectionString =
+    env.CONNECTION_STRING || 'postgres://postgres:root@localhost:5432/arif';
+
 module.exports = {
     pg,
     server,
     Admin,
+    ConnectionString,
 };
