@@ -21,10 +21,10 @@ app.use(
     '/api/uploads',
     express.static(path.join(__dirname, '..', 'public', 'uploads'))
 );
-app.use('/api', router);
+app.use('/', router);
 app.use(errorHandler);
 
-let FORCE = false;
+let FORCE = true;
 
 sequelize
     .sync({ force: FORCE })
