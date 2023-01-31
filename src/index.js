@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(expressFileUpload());
 app.use(
-    '/api/uploads',
+    '/uploads',
     express.static(path.join(__dirname, '..', 'public', 'uploads'))
 );
 app.use('/', router);
