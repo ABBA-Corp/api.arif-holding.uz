@@ -24,7 +24,7 @@ app.use(
 app.use('/', router);
 app.use(errorHandler);
 
-let FORCE = true;
+let FORCE = false;
 
 sequelize
     .sync({ force: FORCE })
