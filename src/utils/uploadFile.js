@@ -25,7 +25,7 @@ const uploadFile = (files, folder) => {
                 ext: ext,
                 mimetype: file.mimetype,
             };
-            arr.push(f.src);
+            arr.push({ image: f.src });
         }
     } else {
         const ext = files['mimetype'].split('/')[1];
