@@ -7,7 +7,6 @@ module.exports = {
     create: async (req, res, next) => {
         try {
             const aboutData = req.body;
-            console.log(req['files']);
             const photos = uploadFile(req['files']['images'], 'images');
             const aboutImage = uploadFile(req['files']['image'], 'images');
 

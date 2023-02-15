@@ -18,8 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(expressFileUpload());
 app.use(
-    '/uploads/images',
-    express.static(path.join(__dirname, '..', 'public', 'uploads', 'images'))
+    '/uploads',
+    express.static(path.join(__dirname, '..', 'public', 'uploads'))
 );
 app.use('/', router);
 app.use(errorHandler);
