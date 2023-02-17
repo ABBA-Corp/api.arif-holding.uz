@@ -31,6 +31,12 @@ module.exports = {
                 where: { id: id },
                 include: Workers,
             });
+            await News.update(
+                {
+                    viewers: Number(data.dataValues.viewers) + 1,
+                },
+                { where: { id: id } }
+            );
 
             res.status(200).json({
                 success: true,
